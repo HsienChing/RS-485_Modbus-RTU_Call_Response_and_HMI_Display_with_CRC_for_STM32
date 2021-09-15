@@ -114,7 +114,7 @@ Purpose:
 1. Send Modbus-RTU command to the device through RS-485 via the UART1.
 1. Get responses from the device through RS-485.
 1. Send the device responses to the human-machine interface (HMI) via the UART3.
-1. Users can monitor the device responses from the STM32CubeIDE console monitor via UART2.
+1. Users can monitor the device responses from the STM32CubeIDE console monitor (or other serial monitor) via UART2.
 
 Suggested hardware setup: 
 1. UART1: A "RS-485 to TTL module" is used to convert the RS-485 signal because STM32 NUCLEO-F446RE (and Blue Pill) does not support RS-485 directly.
@@ -130,6 +130,17 @@ Suggested library for calculating CRC:
 1. The CRC 16 calculation function is available from Lammert Bies, https://github.com/lammertb/libcrc . 
 1. On-line CRC calculation and free library, https://www.lammertbies.nl/comm/info/crc-calculation .
 1. The key files of the library used in this project is put in the [library](library).
+
+Notice:
+
+If the following problems happen during compiling by STM32CubeIDE, go to "Project > Properties > C/C++ Build > Settings > Tool Settings > MCU Settings"
+and then check the box "Use float with printf from newlib-nano (-u _printf_float)."
+
+    1. The float formatting support is not enabled, check your MCU Settings from "Project Properties > C/C++ Build > Settings > Tool Settings", or add manually "-u _printf_float" in linker flags.	main.c	/F103C8_UART_HMI/Core/Src	
+    2. Problem description: The float formatting support is not enabled, check your MCU Settings from "Project Properties > C/C++ Build > Settings > Tool Settings", or add manually "-u _printf_float" in linker flags.
+
+
+
 
 ## Test board (device simulator)
 
@@ -172,17 +183,24 @@ To get a local copy up and running follow these simple example steps.
 
 <!-- USAGE EXAMPLES -->
 # Usage
-Copy and paste the source code into the file ProjectFolder/Core/Src/main.c .
+1. Setup the "Pinout & configuration" of the boards by STM32CubeIDE.
+1. Copy and paste the source code into the file ProjectFolder/Core/Src/main.c .
 
 The source codes are in the [code](code) directory. 
 Example: "Main board - STM32 NUCLEO-F446RE" means that the STM32 NUCLEO-F446RE is used as the main board.
+
+## Main board - Blue Pill (STM32F103C8T6)
+
+| #    | Source file                                                                                        | Date       |
+| ---- | -------------------------------------------------------------------------------------------------- | ---------- |
+|    1 | [Main_Modbus_HMI_BluePill_v01.c](code/Main_board-Blue_Pill/Main_Modbus_HMI_BluePill_v01.c)         | 2021-09-15 |
+
 
 ## Main board - STM32 NUCLEO-F446RE
 
 | #    | Source file                                                                                        | Date       |
 | ---- | -------------------------------------------------------------------------------------------------- | ---------- |
 |    1 | [Main_Modbus_HMI_F446RE_v01.c](code/Main_board-STM32_NUCLEO-F446RE/Main_Modbus_HMI_F446RE_v01.c)   | 2021-09-14 |
-
 
 
 ## Test board - Blue Pill (STM32F103C8T6)
@@ -192,7 +210,11 @@ Example: "Main board - STM32 NUCLEO-F446RE" means that the STM32 NUCLEO-F446RE i
 |    1 | [Test_Modbus_HMI_BluePill_v01.c](code/Test_board-Blue_Pill/Test_Modbus_HMI_BluePill_v01.c)         | 2021-09-14 |
 
 
+## Test board - STM32 NUCLEO-F446RE
 
+| #    | Source file                                                                                        | Date       |
+| ---- | -------------------------------------------------------------------------------------------------- | ---------- |
+|    1 | [Test_Modbus_HMI_F446RE_v01.c](code/Test_board-STM32_NUCLEO-F446RE/Test_Modbus_HMI_F446RE_v01.c)   | 2021-09-15 |
 
 
 <!-- LICENSE -->
