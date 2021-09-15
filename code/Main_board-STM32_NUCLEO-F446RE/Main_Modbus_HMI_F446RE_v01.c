@@ -4,11 +4,13 @@
   Name: Main_Modbus_HMI_F446RE_v01.c
   Suggested board: STM32 NUCLEO-F446RE
   Suggested development environment: STM32CubeIDE
+ 
   Purpose:
     1. Send Modbus-RTU command to the device through RS-485 via the UART1.
     2. Get responses from the device through RS-485.
     3. Send the device responses to the human-machine interface (HMI) via the UART3.
     4. Users can monitor the device responses from the STM32CubeIDE console monitor via UART2.
+    
   Suggested hardware setup:
     1. UART1: A "RS-485 to TTL module" is used to convert the RS-485 signal because STM32 NUCLEO-F446RE (and Blue Pill) does not support RS-485 directly.
     2. UART3: A HMI with the UART interface is used to show the device responses through the UART3.
@@ -21,13 +23,13 @@
     1. The CRC 16 calculation function is available from Lammert Bies, https://github.com/lammertb/libcrc .
     2. On-line CRC calculation and free library, https://www.lammertbies.nl/comm/info/crc-calculation .
     3. The key files of the library used in this project is put in the [library](library).
-
+ 
   Date:   14 Sep. 2021
   Author: Dr. Hsien-Ching Chung
   ORCID:  https://orcid.org/0000-0001-9364-8858
-
+ 
   Project Link: https://github.com/HsienChing/RS-485_Modbus-RTU_Call_Response_and_HMI_Display_with_CRC_for_STM32
-
+ 
   License: MIT License
   Copyright (c) 2021 Hsien-Ching Chung
 */
