@@ -8,7 +8,7 @@
     1. Receive Modbus-RTU command from the main board through RS-485 via the UART1.
     2. Generate the Modbus data with CRC and counting value.
     3. Send the Modbus data back.
- Suggested hardware setup:
+  Suggested hardware setup:
     1. UART1: A "RS-485 to TTL module" is used to convert the RS-485 signal because STM32 NUCLEO-F446RE (and Blue Pill) does not support RS-485 directly.
   Suggested software (STM32CubeIDE) setup:
     1. Pinout & configuration/Connectivity
