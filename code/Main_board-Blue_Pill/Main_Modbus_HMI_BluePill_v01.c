@@ -4,12 +4,13 @@
   Name: Main_Modbus_HMI_BluePill_v01.c
   Suggested board: Blue Pill (STM32F103C8T6)
   Suggested development environment: STM32CubeIDE
-
+ 
   Purpose:
     1. Send Modbus-RTU command to the device through RS-485 via the UART1.
     2. Get responses from the device through RS-485.
     3. Send the device responses to the human-machine interface (HMI) via the UART3.
     4. Users can monitor the device responses from the serial monitor via UART2.
+ 
   Suggested hardware setup:
     1. UART1: A "RS-485 to TTL module" is used to convert the RS-485 signal because STM32 NUCLEO-F446RE (and Blue Pill) does not support RS-485 directly.
     2. UART3: A HMI with the UART interface is used to show the device responses through the UART3.
@@ -151,8 +152,9 @@ int main(void)
   {
     HAL_UART_Transmit(&huart1, Command_Modbus, sizeof(Command_Modbus), 100);            // Send Modbus command through UART1
     if( HAL_UART_Receive(&huart1, Data_Modbus, sizeof(Data_Modbus), 2000) == HAL_OK ) { // When receiving data from UART1 successfully
-  
-      HAL_UART_Transmit(&huart2, Data_Modbus, sizeof(Data_Modbus), 100);                // Send the received Modbus data to serial monitor through UART2
+      
+      // Send the received Modbus data to serial monitor through UART2
+      HAL_UART_Transmit(&huart2, Data_Modbus, sizeof(Data_Modbus), 100);                
  
       // Get the CRC16 of the received Modbus data
       uint16_t CRC16_data = ( Data_Modbus[sizeof(Data_Modbus)-1] << 8 ) | Data_Modbus[sizeof(Data_Modbus)-2];
@@ -213,18 +215,18 @@ int main(void)
         HAL_UART_Transmit(&huart3, buf, strlen((char*)buf), 100);
         HAL_UART_Transmit(&huart3, EndHex, sizeof(EndHex), 100);
  
-        } else {
-          // Send message to serial monitor through UART2
-          strcpy((char*)buf, "CRC16 FAILED.\r\n");
-          HAL_UART_Transmit(&huart2, buf, strlen((char*)buf), 100);
-        }
       } else {
         // Send message to serial monitor through UART2
-        strcpy((char*)buf, "Data receive FAILED. Resend Modbus command.\r\n");
+        strcpy((char*)buf, "CRC16 FAILED.\r\n");
         HAL_UART_Transmit(&huart2, buf, strlen((char*)buf), 100);
       }
+    } else {
+      // Send message to serial monitor through UART2
+      strcpy((char*)buf, "Data receive FAILED. Resend Modbus command.\r\n");
+      HAL_UART_Transmit(&huart2, buf, strlen((char*)buf), 100);
+    }
  
-      //HAL_Delay(50); // Data processing rate control
+    //HAL_Delay(50); // Data processing rate control
 
     /* USER CODE END WHILE */
 
