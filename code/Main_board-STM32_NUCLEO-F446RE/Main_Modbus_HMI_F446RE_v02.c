@@ -32,6 +32,14 @@
  
   License: MIT License
   Copyright (c) 2021 Hsien-Ching Chung
+  ------------------------------------
+  Update description:
+  v02 2021-09-17
+    1. Show Modbus data in string format through UART2.
+    2. Send the message "Data receiving SUCCESS." through UART2 after receiving the Modbus data.
+    3. Correct some tyops in the comments.
+  v01 2021-09-14
+    Initial version.
 */
 
 /* USER CODE END Header */
@@ -162,7 +170,8 @@ int main(void)
       HAL_UART_Transmit(&huart2, buf, strlen((char*)buf), 100);
       
       for (int i = 0; i < sizeof(Data_Modbus); i++) {
-        sprintf((char*)buf, " %02X", Data_Modbus[i]);                     // Show the value on the serial monitor
+        // Show the value on the serial monitor
+        sprintf((char*)buf, " %02X", Data_Modbus[i]);                     
         HAL_UART_Transmit(&huart2, buf, strlen((char*)buf), 100);
       }
 
