@@ -190,7 +190,7 @@ int main(void)
         if ( CRC16_data == CRC16_cal ) {                                  // When CRC16 check is passed successfully
 
           // Send message to STM32CubeIDE console monitor through UART2
-          strcpy((char*)buf, "CRC16 PASSED.\r\n");
+          strcpy((char*)buf, "CRC16 check PASSED.\r\n");
           HAL_UART_Transmit(&huart2, buf, strlen((char*)buf), 100);
 
           uint16_t value = (Data_Modbus[5] << 8) | Data_Modbus[6];        // Combine/Merge two bytes into one
@@ -241,7 +241,7 @@ int main(void)
 
         } else {
           // Send message to STM32CubeIDE console monitor through UART2
-          strcpy((char*)buf, "CRC16 FAILED.\r\n");
+          strcpy((char*)buf, "CRC16 check FAILED.\r\n");
           HAL_UART_Transmit(&huart2, buf, strlen((char*)buf), 100);
         }
       } else {
