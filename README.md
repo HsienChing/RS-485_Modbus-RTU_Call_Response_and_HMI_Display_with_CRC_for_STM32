@@ -193,6 +193,7 @@ Example: "Main board - STM32 NUCLEO-F446RE" means that the STM32 NUCLEO-F446RE i
 
 | #    | Source file                                                                                        | Date       |
 | ---- | -------------------------------------------------------------------------------------------------- | ---------- |
+|    2 | [Main_Modbus_HMI_BluePill_v02.c](code/Main_board-Blue_Pill/Main_Modbus_HMI_BluePill_v02.c)         | 2021-09-17 |
 |    1 | [Main_Modbus_HMI_BluePill_v01.c](code/Main_board-Blue_Pill/Main_Modbus_HMI_BluePill_v01.c)         | 2021-09-15 |
 
 
@@ -200,6 +201,7 @@ Example: "Main board - STM32 NUCLEO-F446RE" means that the STM32 NUCLEO-F446RE i
 
 | #    | Source file                                                                                        | Date       |
 | ---- | -------------------------------------------------------------------------------------------------- | ---------- |
+|    2 | [Main_Modbus_HMI_F446RE_v02.c](code/Main_board-STM32_NUCLEO-F446RE/Main_Modbus_HMI_F446RE_v02.c)   | 2021-09-17 |
 |    1 | [Main_Modbus_HMI_F446RE_v01.c](code/Main_board-STM32_NUCLEO-F446RE/Main_Modbus_HMI_F446RE_v01.c)   | 2021-09-14 |
 
 
